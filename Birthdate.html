@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthdate Age Checker</title>
+</head>
+<body>
+    <h2>Check Your Age (in Years)</h2>
+    <label for="dob">Birth Date:</label>
+    <input type="date" id="dob">
+    <button onclick="calculateAge()">Check Age</button>
+    <div id="result"></div>
+    <script>
+        function calculateAge() {
+            const dobInput = document.getElementById('dob').value;
+            if (!dobInput) {
+                document.getElementById('result').textContent = "Please select your birth date.";
+                return;
+            }
+            const dob = new Date(dobInput);
+            const today = new Date();
+            let age = today.getFullYear() - dob.getFullYear();
+            const m = today.getMonth() - dob.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+                age--;
+            }
+            document.getElementById('result').textContent = "Your age is: " + age + " years.";
+        }
+    </script>
+</body>
+</html>
